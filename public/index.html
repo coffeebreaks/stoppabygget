@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <Link rel="stylesheet" href="style.css">
+</head>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+   
+    class MenuItem extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({mode: 'open'});
+            this.shadowRoot.innerHTML = `
+                <style>
+                    a {
+                        text-decoration: none;
+                        font-family: "Jockey One", sans-serif;
+                        color: white;   
+                        font-size: 1.5rem;
+                        display: flex;
+                        flex-flow:row;
+                        widht: 100%;
+                        justify-content: space-between;
+                        background-color: red;
+                        margin: 1rem;
+                    }
+                </style>
+                <a href="${this.getAttribute('data-link')}"><slot></slot></a>
+            `;
+        }
+    }
+    customElements.define('menu-item', MenuItem);
+
+    class NavMenu extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({mode: 'open'});
+            this.shadowRoot.innerHTML = `
+                <style>
+                    a {
+                        display: flex;
+                        flex-flow:row
+                        widht: 100%;
+                        justify-content: space-between;
+                        background-color: red;
+                        margin: 1rem;
+                    }
+
+                </style>
+
+                <div class="flex">
+                    <slot></slot> 
+                </div>
+            `;
+        }
+    }
+    customElements.define('nav-menu', NavMenu);
+
+    class TopBar extends HTMLElement {
+        constructor() {
+        super()
+        this.attachShadow({mode: 'open'});
+    
+        this.shadowRoot.innerHTML = `
+        <style> 
+            div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #FF6B00;
+        
+            }
+
+            .nav__menu {
+                display: flex;
+                flex-flow: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                background-color: green;
+            }
+        </style>
+        <div class="top__bar">
+          
+            <img class="page__logo" src="${this.dataset.logo}"/>
+            <div >
+                <slot class="nav__menu"></slot>    
+            </div>
+            </div>
+        
+        `
+    }
+    }
+
+    customElements.define('top-bar', TopBar);
+
+
+});
+</script>
+<body>
+    <top-bar data-logo="logo.png">
+
+        <nav-menu >
+            <menu-item  data-link="about.html">about</menu-item>
+            <menu-item  data-link="about.html">about</menu-item>
+            <menu-item  data-link="about.html">about</menu-item>
+            <menu-item  data-link="about.html">about</menu-item>
+        </nav-menu>
+    </top-bar>
+    
+</body>
+</html>
