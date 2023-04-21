@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
     res.serveFolder(__dirname + '/public');
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Example app listening on sport ${port}!`));
 
 // Path: package.json
 
