@@ -4,7 +4,8 @@ const port = 3000;
 const path = require('path');
 
 app.get('/', (req, res) => {
-    app.use(express.static('./public'));
+    const publicPath = path.join(__dirname, 'public');
+    app.use(express.static(publicPath));
 });
 
 app.listen(port, () => console.log(`Example app listening on sport ${port}!`));
