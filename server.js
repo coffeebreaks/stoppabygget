@@ -8,7 +8,7 @@ app.use(express.static(publicPath));
 app.get('/', (req, res) => {
 });
 
-app.listen(port, () => console.log(`Example app listening on sport ${port}!`));
+app.listen(port, () => console.log(`Example app listenissng on sport ${port}!`));
 
 // Path: package.json
 
